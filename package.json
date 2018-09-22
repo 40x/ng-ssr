@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ssr": "npm run build:client && npm run build:server && npm run compile:server",
+    "build:client": "ng build --prod",
+    "build:server": "ng run ng-ssr:server",
+    "compile:server": "webpack --config webpack.server.config.js",
+    "serve:ssr": "node dist/server"
   },
   "private": true,
   "dependencies": {
@@ -19,9 +24,14 @@
     "@angular/http": "^6.1.0",
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/platform-server": "^6.1.8",
     "@angular/router": "^6.1.0",
+    "@nguniversal/express-engine": "^6.1.0",
+    "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "core-js": "^2.5.4",
+    "request": "^2.88.0",
     "rxjs": "~6.2.0",
+    "ts-loader": "^5.1.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -43,6 +53,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.9.2",
+    "webpack-cli": "^3.1.0"
   }
 }

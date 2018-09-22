@@ -1,0 +1,18 @@
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+li {
+  margin: 0;
+  flex: 1 0 33%;
+  cursor: pointer;
+  outline: none;
+}
+
+.active {
+  color: green;
+  border-bottom: 1px solid green;
+}
